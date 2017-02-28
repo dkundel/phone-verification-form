@@ -1,0 +1,62 @@
+html, body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: ‘Trebuchet MS’, Helvetica, sans-serif;
+  font-weight: 200;
+  color: #333;
+  border-top: 5px solid #F22F46;
+  font-size: 25px;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-weight: 100;
+  color: #0D122B;
+}
+
+input {
+  position: relative;
+  font-size: 1em;
+  padding: 10px;
+  border: 2px solid #efefef;
+}
+
+/* Form specific styles */
+
+.phone-input + .valid-indicator > .valid {
+  display: initial;
+}
+
+.phone-input + .valid-indicator > .invalid {
+  display: none;
+}
+
+
+.phone-input:invalid + .valid-indicator > .valid {
+  display: none;
+}
+
+.phone-input:invalid + .valid-indicator > .invalid {
+  display: initial;
+}
+
+.country-code[data-loading] > img {
+  animation-name: rotatingEmoji;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes rotatingEmoji {
+  from { transform: rotateZ(0deg) scaleX(-1); }
+  to { transform: rotateZ(360deg) scaleX(-1); }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "phone-verification-form",
+  "version": "1.0.0",
+  "description": "An example of a phone number verification in the form without Regular Expressions",
+  "main": "index.js",
+  "repository": {
+    "url": "git@github.com:dkundel/phone-verification-form.git",
+    "type": "git"
+  },
+  "author": "Dominik Kundel <dominik.kundel@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "express": "^4.14.1"
+  }
+}

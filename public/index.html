@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Phone Verification</title>
+  <script src="https://cdn.jsdelivr.net/emojione/2.2.7/lib/js/emojione.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/emojione/2.2.7/assets/css/emojione.min.css"/>
+  <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+  <h1>Phone Validation Example</h1>
+  <form>
+    <label for="phoneNumber">Phone Number</label>
+    <input class="phone-input" id="phoneNumber" type="tel" autocomplete="tel" required value="+14157012311" placeholder="Use international format">
+    <span class="valid-indicator">
+      <img class="emojione valid" alt="✅" title=":white_check_mark:" src="https://cdn.jsdelivr.net/emojione/assets/png/2705.png?v=2.2.7"/>
+      <img class="emojione invalid" alt="❎" title=":negative_squared_cross_mark:" src="https://cdn.jsdelivr.net/emojione/assets/png/274e.png?v=2.2.7"/>
+    </span>
+    <span class="country-code"></span>
+  </form>
+  <script src="/main.js"></script>
+</body>
+</html>
