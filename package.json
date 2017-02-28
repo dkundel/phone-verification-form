@@ -11,6 +11,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "express": "^4.14.1"
+    "express": "^4.14.1",
+    "twilio": "^2.11.1"
   }
 }
