@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Phone Verification</title>
+  <style>
+  #myPhoneNumber {
+    color: green;
+  }
+
+  #myPhoneNumber:invalid {
+    color: red;
+  }
+  </style>
+</head>
+<body>
+  <h1>Ahoy!</h1>
+  <p>Please enter your phone number below</p>
+  <form>
+    <label for="myPhoneNumber">Your Phone Number</label>
+    <input id="myPhoneNumber" name="myPhoneNumber" type="tel" autocomplete="tel" required>
+  </form>
+  <script>
+  var phoneNumberInput = document.getElementById('myPhoneNumber');
+
+  function verifyNumber() {
+    var currentNumber = phoneNumberInput.value;
+    fetch('/check/' + encodeURIComponent(currentNumber))
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error('Received failed status code');
+        }
+        return response.json();
+      })
+      .then(function (data) {
+        if (data.valid) {
+          phoneNumberInput.setCustomValidity('');
+        } else {
+          phoneNumberInput.setCustomValidity('Invalid phone number');
+        }
+      })
+      .catch(function (err) {
+        console.error(err.message);
+      });
+  }
+
+  var lastTimeout = undefined;
+  phoneNumberInput.addEventListener('keyup', function () {
+    if (lastTimeout) {
+      clearTimeout(lastTimeout);
+    }
+    
+    if (phoneNumberInput.value.length > 4) {
+      lastTimeout = setTimeout(verifyNumber, 600);
+    }
+  });
+  </script>
+</body>
+</html>

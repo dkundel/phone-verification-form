@@ -1,0 +1,17 @@
+<!-- Load Emoji One Support -->
+<script src="https://cdn.jsdelivr.net/emojione/2.2.7/lib/js/emojione.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/emojione/2.2.7/assets/css/emojione.min.css"/>
+<!-- Actual content -->
+<p id="errorMessage" style="display: none;">
+  THIS DEMO WORKS ONLY IN  BROWSER THAT SUPPORTS FETCH. Adjust the fetch call to use a different AJAX HTTP request to use it in other browsers.
+</p>
+<h1>Phone Validation Example</h1>
+<form>
+  <label for="phoneNumber">Phone Number</label>
+  <input class="phone-input" id="phoneNumber" name="phoneNumber" type="tel" autocomplete="tel" required value="+14157012311" placeholder="Use international format">
+  <span class="valid-indicator">
+    <img class="emojione valid" alt="✅" title=":white_check_mark:" src="https://cdn.jsdelivr.net/emojione/assets/png/2705.png?v=2.2.7"/>
+    <img class="emojione invalid" alt="❎" title=":negative_squared_cross_mark:" src="https://cdn.jsdelivr.net/emojione/assets/png/274e.png?v=2.2.7"/>
+  </span>
+  <span class="country-code"></span>
+</form>

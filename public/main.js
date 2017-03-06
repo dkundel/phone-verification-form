@@ -1,5 +1,5 @@
 if (typeof fetch !== 'function') {
-  alert('THIS DEMO WORKS ONLY IN  BROWSER THAT SUPPORTS FETCH. Adjust the fetch call to use a different AJAX HTTP request to use it in other browsers.')
+  document.getElementById('errorMessage').style.display = 'block';
 }
 
 var phoneNumberInput = document.getElementById('phoneNumber');
@@ -13,27 +13,33 @@ function keyListener() {
     clearTimeout(lastTimeout);
   }
   
-  lastTimeout = setTimeout(verifyNumber, 300);
+  if (phoneNumberInput.value.length > 4) {
+    lastTimeout = setTimeout(verifyNumber, 300);
+  }
 }
 
 function verifyNumber() {
   showLoading();
   var currentNumber = phoneNumberInput.value;
   fetch('/check/' + currentNumber)
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {  
-    stopLoading();
-    if (data.valid) {
-      countryFlag.innerHTML = emojione.toImage(':flag_' + data.country.toLowerCase() + ':');
-      phoneNumberInput.setCustomValidity('');
-    } else {
-      phoneNumberInput.setCustomValidity('Invalid phone number');
-    }
-  })
-  .catch(function (err) {
-    console.log(err.message);
+    .then(function (response) {
+      stopLoading();
+      if (!response.ok) {
+        throw new Error('Something went wrong with the HTTP call.');
+      }
+      return response.json();
+    })
+    .then(function (data) {  
+      if (data.valid) {
+        countryFlag.innerHTML = emojione.toImage(':flag_' + data.country.toLowerCase() + ':');
+        phoneNumberInput.setCustomValidity('');
+      } else {
+        phoneNumberInput.setCustomValidity('Invalid phone number');
+      }
+    })
+    .catch(function (err) {
+      phoneNumberInput.setCustomValidity('Could not verify number');
+      console.error(err.message);
   });
 }
 

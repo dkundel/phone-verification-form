@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV === 'debug') {
+  require('dotenv').load();
+}
+
 const express = require('express');
 const path = require('path');
 
@@ -8,7 +12,22 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/check/:number', (req, res) => {
+function checkForCodepenCors(req, res, next) {
+  if (req.get('Origin')) {
+    let origin  = req.get('Origin');
+    if (origin.endsWith('codepen.io')) {
+      res.header('Access-Control-Allow-Origin', origin);
+      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+      next();
+    } else {
+      res.status(401).send();
+    }
+  } else {
+    next();
+  }
+}
+
+app.get('/check/:number', checkForCodepenCors, (req, res) => {
   verify(req.params.number)
     .then(data => {
       res.send(data);
