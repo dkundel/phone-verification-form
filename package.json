@@ -13,9 +13,13 @@
   "dependencies": {
     "dotenv": "^4.0.0",
     "express": "^4.14.1",
-    "twilio": "^3.5.0"
+    "twilio": "^3.5.0",
+    "snyk": "^1.69.0"
   },
   "scripts": {
-    "start": "node ."
-  }
+    "start": "node .",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
